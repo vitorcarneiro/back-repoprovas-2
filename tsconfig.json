@@ -1,15 +1,15 @@
 {
-  "compilerOptions": {
-    "esModuleInterop": true,
-    "module": "es6",
-    "moduleResolution": "node",
-    "outDir": "dist"
-  },
-  "ts-node": {
-    "esm": true
-  },
-  "scripts": {
-    "build": "tsc",
-    "start": "node dist/server.js"
+    "compilerOptions": {
+      "esModuleInterop": true,
+      "module": "es6",
+      "moduleResolution": "node",
+      "outDir": "dist"
+    },
+    "ts-node": {
+      "esm": true
+    },
+    "scripts": {
+      "build": "tsc",
+      "start": "node dist/server.js"
+    }
   }
-}

@@ -12,6 +12,13 @@ async function find(req: Request, res: Response) {
   res.send({ tests });
 }
 
+async function getInfoToCreate(req: Request, res: Response) {
+  const testsInfos = await testService.getInfo();
+
+  res.send({ testsInfos });
+}
+
 export default {
   find,
+  getInfoToCreate
 };
