@@ -1,8 +1,10 @@
 import { Test } from "@prisma/client";
 import testRepository from "../repositories/testRepository.js";
 import categoryService from "../services/categoryService.js";
-import disciplineService from "../services/disciplineService.js";
-import teacherService from "../services/teacherService.js";
+import teacherDisciplineService from "../services/teacherDisciplineService.js";
+import {
+  notFoundError
+} from "../utils/errorUtils.js";
 
 interface Filter {
   groupBy: "disciplines" | "teachers";
@@ -25,7 +27,13 @@ async function getInfo() {
   return { categories, teachersDisciplines };
 }
 
-async function create(createTestData: CreateTestData) {
+async function create(createTestData: CreateTestData) {  
+  const existingCategory = await categoryService.findUnique(createTestData.categoryId)
+  if (!existingCategory) throw notFoundError("Category must exist");
+
+  const existingTeacherDiscipline = await teacherDisciplineService.findUnique(createTestData.teacherDisciplineId)
+  if (!existingTeacherDiscipline) throw notFoundError("TeacherDiscipline must exist");
+
   testRepository.insert(createTestData);
 }
 
