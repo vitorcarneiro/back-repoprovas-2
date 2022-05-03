@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import testService, { CreateTestData } from "../services/testService.js";
+import testService from "../services/testService.js";
 
 async function find(req: Request, res: Response) {
   const { groupBy } = req.query as { groupBy: string };
@@ -33,7 +33,6 @@ async function addView(req: Request, res: Response) {
 
   res.sendStatus(200);
 }
-
 
 export default {
   find,
