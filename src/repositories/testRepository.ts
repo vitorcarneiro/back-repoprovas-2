@@ -46,13 +46,13 @@ async function getTeachersDisciplines() {
   return prisma.teacherDiscipline.findMany({
     select: {
       id: true,
-      teacher: true,
       discipline: {
         select: {
           id: true,
           name: true,
         }
-      }
+      },
+      teacher: true
     }
   });
 }
