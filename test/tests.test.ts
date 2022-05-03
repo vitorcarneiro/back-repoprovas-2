@@ -108,7 +108,13 @@ describe("Test router tests - POST /tests/create", () => {
     expect(test.length).not.toEqual(0);
   });
 
+  it("should return 422 given a invalid body", async () => {
+    const body = {};
 
+    const response = await supertest(app).post("/tests/create").send(body);
+
+    expect(response.status).toEqual(422);
+  });
 });
 
 
