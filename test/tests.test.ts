@@ -3,11 +3,9 @@ import app from "../src/app";
 import prisma from "../src/database.js";
 import tokenFactory from "./factories/authFactory.js";
 import testBodyFactory from "./factories/testFactory";
-import userBodyFactory from "./factories/userBodyFactory.js";
-import userFactory from "./factories/userFactory.js";
 
 describe("Test router tests - GET /tests?groupBy=disciplines", () => {
-  beforeEach(truncateUsers);
+  beforeEach(truncateTests);
 
   afterAll(disconnect);
 
@@ -34,7 +32,7 @@ describe("Test router tests - GET /tests?groupBy=disciplines", () => {
 });
 
 describe("Test router tests - GET /tests?groupBy=teachers", () => {
-  beforeEach(truncateUsers);
+  beforeEach(truncateTests);
 
   afterAll(disconnect);
 
@@ -61,7 +59,7 @@ describe("Test router tests - GET /tests?groupBy=teachers", () => {
 });
 
 describe("Test router tests - GET /tests/info", () => {
-  beforeEach(truncateUsers);
+  beforeEach(truncateTests);
 
   afterAll(disconnect);
 
@@ -88,7 +86,7 @@ describe("Test router tests - GET /tests/info", () => {
 });
 
 describe("Test router tests - POST /tests/create", () => {
-  beforeEach(truncateUsers);
+  beforeEach(truncateTests);
 
   afterAll(disconnect);
 
@@ -106,15 +104,6 @@ describe("Test router tests - POST /tests/create", () => {
       },
     });
 
-    // await prisma.test.deleteMany({
-    //   where: {
-    //     name: body.name,
-    //     pdfUrl: body.pdfUrl,
-    //     categoryId: body.categoryId,
-    //     teacherDisciplineId: body.teacherDisciplineId
-    //   },
-    // });
-
     expect(response.status).toEqual(201);
     expect(test.length).not.toEqual(0);
   });
@@ -127,6 +116,6 @@ async function disconnect() {
   await prisma.$disconnect();
 }
 
-async function truncateUsers() {
-  await prisma.$executeRaw`TRUNCATE TABLE users;`;
+async function truncateTests() {
+  await prisma.$executeRaw`TRUNCATE TABLE tests;`;
 }
