@@ -57,10 +57,30 @@ async function getTeachersDisciplines() {
   });
 }
 
+async function findById(id: number) {
+  return prisma.test.findUnique({
+    where: {
+      id,
+    },
+  });
+}
+
+async function updateView(id: number, views: number) {{
+  return prisma.test.update({
+    where: {
+      id,
+    },
+    data: {
+      views,
+    },
+  })
+}}
 
 export default {
   getTestsByDiscipline,
   getTestsByTeachers,
   insert,
-  getTeachersDisciplines
+  getTeachersDisciplines,
+  findById,
+  updateView,
 };

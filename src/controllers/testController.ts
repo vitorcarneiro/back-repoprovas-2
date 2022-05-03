@@ -26,9 +26,18 @@ async function create(req: Request, res: Response) {
   res.sendStatus(201);
 }
 
+async function addView(req: Request, res: Response) {
+  const { testId } = req.params;
+
+  await testService.addView(Number(testId));
+
+  res.sendStatus(200);
+}
+
 
 export default {
   find,
   infoToCreate,
-  create
+  create,
+  addView
 };

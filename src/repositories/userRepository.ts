@@ -8,6 +8,7 @@ async function findById(id: number) {
     },
   });
 }
+
 async function findByEmail(email: string) {
   return prisma.user.findUnique({
     where: {

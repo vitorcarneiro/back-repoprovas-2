@@ -37,8 +37,16 @@ async function create(createTestData: CreateTestData) {
   testRepository.insert(createTestData);
 }
 
+async function addView(id: number) {
+  const test = await testRepository.findById(id);
+  if (!test) throw notFoundError("Test must exist");
+
+  await testRepository.updateView(id, test.views + 1);
+}
+
 export default {
   find,
   create,
-  getInfo
+  getInfo,
+  addView,
 };

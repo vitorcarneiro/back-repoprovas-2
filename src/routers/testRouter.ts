@@ -26,4 +26,10 @@ testRouter.post(
     testController.create
 );
 
+testRouter.patch(
+    "/tests/:testId/addView",
+    ensureAuthenticatedMiddleware,
+    testController.addView
+);
+
 export default testRouter;
